@@ -1,0 +1,49 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace upravljanjeIznimkama
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void btKlikni_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int godRod = Convert.ToInt16(txtUnos.Text);
+                txtIspis.Text = godRod.ToString();
+                txtUnos.Clear();
+            }
+            catch (Exception ex)
+            {
+                DialogResult odabir = MessageBox.Show("Molim vas da upišete broj.\nDa li želite izbrisat postojeći unos?","Pogrešan unos!",
+                    MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+                
+                switch (odabir)
+                {
+                    case DialogResult.Yes:
+                        txtIspis.Clear();
+                        txtUnos.Clear(); break;
+                    case DialogResult.No:
+                        break;
+                }
+
+                txtUnos.Select();
+                
+            }
+
+        }
+
+    }
+}
